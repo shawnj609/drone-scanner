@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QrReader } from "react-qr-reader";
 
 const Test = (props) => {
   const [data, setData] = useState(new Set());
-  const [err, setError] = useState("No Error");
+
+  // Load data from local storage when component mounts
+  useEffect(() => {
+    const storedData = localStorage.getItem('scannedData');
+    if (storedData) {
+      setData(new Set(JSON.parse(storedData)));
+    }
+  }, []);
 
   const handleScan = (result, error) => {
     if (result) {
-      setData((prevData) => new Set(prevData).add(result.text));
+      setData((prevData) => {
+        const updatedData = new Set(prevData);
+        updatedData.add(result.text);
+
+        // Store updated data in local storage
+        localStorage.setItem('scannedData', JSON.stringify(Array.from(updatedData)));
+
+        return updatedData;
+      });
     }
 
     if (error) {
-    //   console.log(error);
-      setError(error.err);
+      console.error(error);
     }
   };
 
@@ -39,6 +53,14 @@ const Test = (props) => {
     document.body.removeChild(link);
   };
 
+  const clearData = () => {
+    // Clear data from local storage
+    localStorage.removeItem('scannedData');
+
+    // Clear state
+    setData(new Set());
+  };
+
   return (
     <>
       <QrReader
@@ -55,7 +77,7 @@ const Test = (props) => {
         ))}
       </ul>
       <button onClick={downloadData}>Download CSV</button>
-      <p>Error: {err}</p>
+      <button onClick={clearData}>Clear Data</button>
     </>
   );
 };

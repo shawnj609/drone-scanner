@@ -38,6 +38,16 @@ Now, you can access the application over HTTPS by navigating to https://localhos
 
 Please note that you might see a warning in your browser when you navigate to the HTTPS URL, because local-ssl-proxy uses a self-signed certificate by default. You can safely ignore this warning for local development.
 
+## Tailwind CSS
+
+Tailwind is a CSS framework that dynamically creates `css` based on class names on components in the source folder. In order to build the css file, you can run the tailwind watcher like this:
+
+```bash
+npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+```
+
+This will generate the `./dist/output.css` dynamically.
+
 ## Further Support
 
 If you encounter any issues while using the application, please refer to the official React and Next.js documentation, or ask for help on StackOverflow or a similar platform.

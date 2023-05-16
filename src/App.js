@@ -1,9 +1,9 @@
-import Test from './Test';
+import Scanner from './Scanner';
 
 function App() {
   return (
     <div>
-      <Test />
+      <Scanner />
     </div>
   );
 }

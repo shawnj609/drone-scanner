@@ -43,7 +43,7 @@ Please note that you might see a warning in your browser when you navigate to th
 Tailwind is a CSS framework that dynamically creates `css` based on class names on components in the source folder. In order to build the css file, you can run the tailwind watcher like this:
 
 ```bash
-npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+npx tailwindcss -i ./src/input.css -o ./public/output.css --watch
 ```
 
 This will generate the `./dist/output.css` dynamically.

@@ -97,7 +97,7 @@ const Scanner = (props) => {
             </tr>
           </thead>
           <tbody>
-            {[...data].map((item, index) => (
+            {[...data].reverse().map((item, index) => (
               <tr key={index} className="border-b-2">
                 <td>{index}</td>
                 <td>{item}</td>
